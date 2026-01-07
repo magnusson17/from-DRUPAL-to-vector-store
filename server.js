@@ -6,6 +6,12 @@ const PORT = process.env.PORT || 3001
 const TOKEN = process.env.SYNC_TOKEN
 
 http.createServer(async (req, res) => {
+    
+    if (req.method === "GET" && (req.url === "/" || req.url === "/health")) {
+        res.writeHead(200, { "Content-Type": "application/json" })
+        return res.end(JSON.stringify({ ok: true }))
+    }
+
     if (req.method !== "POST" || req.url !== "/sync") {
         res.writeHead(404)
         return res.end("not found")
@@ -37,4 +43,3 @@ http.createServer(async (req, res) => {
         }
     })
 }).listen(PORT)
-console.log("OK")
