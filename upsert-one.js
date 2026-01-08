@@ -48,14 +48,13 @@ export async function upsertOneNode({ bundle, uuid }) {
 
     const minimal = {
         type: item.type,
-        id: item.id,
+        // id: item.id,
         title: item.attributes?.title,
         field_categoria: item.attributes?.field_categoria,
         field_materiale: item.attributes?.field_materiale,
         // field_prezzo: item.attributes?.field_prezzo,
         // field_valuta: item.attributes?.field_valuta,
         field_taglie: taglieRefs.map(ref => ({
-            id: ref.id,
             name: termNameById.get(ref.id) || null
         }))
     }
